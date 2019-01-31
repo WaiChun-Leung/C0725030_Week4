@@ -12,9 +12,36 @@ namespace C0725030_Week4
         {
             Countryside Ontario = new Countryside();
             Ontario.run();
+            //LearningExample L = new LearningExample();
+            //L.run();
 
         }
     }
+
+    //this part is just for check a and b is it store in the same location
+    //class LearningExample
+    //{
+    //    public void run()
+    //    {
+    //        Village Toronto;
+    //        Village a;
+    //        Village b;
+    //        Toronto = new Village();
+    //        a = Toronto;
+
+    //        Toronto = new Village();
+    //        b = Toronto;
+
+    //        if (a == b)
+    //        {
+    //            Console.WriteLine("Same");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("Different object refs");
+    //        }
+    //    }        
+    //}
 
     class Village
     {
@@ -40,7 +67,6 @@ namespace C0725030_Week4
         public Village Ajax;
         public Village Head;
         public Village Tail;
-        public Village Temp;
         public Village Current;
 
         public void run()
@@ -56,18 +82,21 @@ namespace C0725030_Week4
             //is the linked list
             //new operator
 
+            Ajax = new Village();
+            Toronto = new Village();
             Maple = new Village();
+
             //make the name of village
             Maple.VillageName = "Maple";
             Maple.previousVillage = null;
             //hoot up to all the city
             Maple.nextVillage = Toronto;
-            Maple.isAstrildeHere = true;
-            Toronto = new Village();
+            Ajax.isAstrildeHere = true;
+            
             Toronto.previousVillage = Maple;
             Toronto.VillageName = "Toronto";
             Toronto.nextVillage = Ajax;
-            Ajax = new Village();
+            
             Ajax.VillageName = "Ajax";
             Ajax.nextVillage = null;
             Ajax.previousVillage = Toronto;
@@ -79,19 +108,32 @@ namespace C0725030_Week4
         //make another for Hugi travel
         public void LookForAstrilde()
         {
-            Current = Maple; //class Head the reference is Maple            
+            Current = Maple;
+
+            while (Current.nextVillage != null)
+            {
+                if (Current.isAstrildeHere)
+                {
+                    Console.WriteLine("Found Astrilde");
+                    return;
+                }
+                else
+                {
+                    Current = Current.nextVillage;
+                }
+            }
+
+
+            //Head = Maple; //class Head the reference is Maple            
             //if (Head.isAstrildeHere)
             //{
             //    Console.WriteLine("Yeah ! Astrilde is in " + Head.VillageName);
             //}
 
-            while (Current.nextVillage != null) //use tap 2 time will show (true)
-            {
-                if (Current.isAstrildeHere)
-                {
-                    Console.WriteLine("Found Astrilde");
-                }
-            }
+            //while (true) //use tap 2 time will show (true)
+            //{
+
+            //}
         }
     }
 }
