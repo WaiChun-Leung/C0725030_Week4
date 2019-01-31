@@ -10,7 +10,8 @@ namespace C0725030_Week4
     {
         static void Main(string[] args)
         {
-
+            Countryside Ontario = new Countryside();
+            Ontario.run();
 
         }
     }
@@ -33,10 +34,21 @@ namespace C0725030_Week4
 
     class Countryside //this is a sociation - "has a"
     {
-        //all is object
+        //all is object, is class instance
         public Village Maple;
         public Village Toronto;
         public Village Ajax;
+        public Village Head;
+        public Village Tail;
+        public Village Temp;
+        public Village Current;
+
+        public void run()
+        {
+            this.MapInitializer();
+            this.LookForAstrilde();
+            Console.WriteLine("Hugi found Astrilde in " + Current.VillageName);
+        }
 
         //make a method
         public void MapInitializer()
@@ -50,6 +62,7 @@ namespace C0725030_Week4
             Maple.previousVillage = null;
             //hoot up to all the city
             Maple.nextVillage = Toronto;
+            Maple.isAstrildeHere = true;
             Toronto = new Village();
             Toronto.previousVillage = Maple;
             Toronto.VillageName = "Toronto";
@@ -60,13 +73,25 @@ namespace C0725030_Week4
             Ajax.previousVillage = Toronto;
 
             //to check Hugi here or not
-            Ajax.isAstrildeHere = true;
+            //Ajax.isAstrildeHere = true;
         }
 
         //make another for Hugi travel
         public void LookForAstrilde()
         {
+            Current = Maple; //class Head the reference is Maple            
+            //if (Head.isAstrildeHere)
+            //{
+            //    Console.WriteLine("Yeah ! Astrilde is in " + Head.VillageName);
+            //}
 
+            while (Current.nextVillage != null) //use tap 2 time will show (true)
+            {
+                if (Current.isAstrildeHere)
+                {
+                    Console.WriteLine("Found Astrilde");
+                }
+            }
         }
     }
 }
